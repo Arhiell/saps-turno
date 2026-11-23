@@ -1,0 +1,47 @@
+// Los datos personales se leen exclusivamente mediante las relaciones a personas.
+export const turnoSelect = `
+  id_turno, 
+  codigo_turno, 
+  id_paciente, 
+  id_profesional, 
+  id_especialidad, 
+  id_salita,
+  id_horario, 
+  id_estado, 
+  fecha_hora_inicio, 
+  fecha_hora_fin, 
+  motivo_consulta,
+  observaciones, 
+  motivo_cancelacion, 
+  fecha_cancelacion, 
+  cancelado_por,
+  fecha_solicitud, 
+  fecha_actualizacion, 
+  creado_por,
+  ocupa_agenda, 
+  impide_otro_misma_especialidad, 
+  version,
+  estado:estados_turno(
+    id_estado,
+    codigo,
+    nombre,
+    ocupa_agenda,
+    impide_otro_misma_especialidad,
+    es_estado_final,
+    activo
+  ),
+  paciente:pacientes(
+    id_paciente,
+    persona:personas(dni,nombres,apellidos)
+  ),
+  solicitante:usuarios!turnos_creado_por_fkey(
+    id_usuario,nombre_usuario,persona:personas(nombres,apellidos)
+  ),
+  profesional:profesionales(
+  id_profesional,
+  matricula,
+  persona:personas(nombres,apellidos)
+  ),
+  salita:salitas(id_salita,nombre,direccion),
+  especialidad:especialidades(id_especialidad,nombre)
+`;

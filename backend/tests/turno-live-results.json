@@ -1,0 +1,97 @@
+{
+  "date": "2026-09-20T13:59:23.146Z",
+  "writes": false,
+  "requests": [
+    {
+      "label": "/api/health",
+      "method": "GET",
+      "path": "/api/health",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "/api/health/database",
+      "method": "GET",
+      "path": "/api/health/database",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "/api/users/health",
+      "method": "GET",
+      "path": "/api/users/health",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Sin JWT",
+      "method": "POST",
+      "path": "/api/turnos",
+      "expected": 401,
+      "status": 401
+    },
+    {
+      "label": "Listado",
+      "method": "GET",
+      "path": "/api/turnos",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Filtros combinados",
+      "method": "GET",
+      "path": "/api/turnos?fecha=2099-10-05&estado=SOLICITADO&page=1&limit=10",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "UUID inválido",
+      "method": "GET",
+      "path": "/api/turnos/no-uuid",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "Turno inexistente",
+      "method": "GET",
+      "path": "/api/turnos/1d5e3482-866a-4bdb-b9e9-850f75df7530",
+      "expected": 404,
+      "status": 404
+    },
+    {
+      "label": "Paciente inexistente",
+      "method": "POST",
+      "path": "/api/turnos",
+      "expected": 404,
+      "status": 404
+    },
+    {
+      "label": "Profesional inexistente",
+      "method": "POST",
+      "path": "/api/turnos",
+      "expected": 404,
+      "status": 404
+    },
+    {
+      "label": "Fecha pasada",
+      "method": "POST",
+      "path": "/api/turnos",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "PATCH vacío",
+      "method": "PATCH",
+      "path": "/api/turnos/1d5e3482-866a-4bdb-b9e9-850f75df7530",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "Estado con formato inválido",
+      "method": "PATCH",
+      "path": "/api/turnos/1d5e3482-866a-4bdb-b9e9-850f75df7530/status",
+      "expected": 400,
+      "status": 400
+    }
+  ]
+}

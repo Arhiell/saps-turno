@@ -1,0 +1,57 @@
+{
+  "name": "saps_turno_api",
+  "version": "1.0.0",
+  "description": "API REST para la gestión y reserva de turnos en salas de atención primaria de la salud (SAPS) de Goya Corrientes. Facilita la consulta de disponibilidad, asignación de turnos y administración de especialidades médicas para optimizar la atención de los ciudadanos a nivel Municipal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --import tsx --test tests/*.test.ts",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "check:email": "tsx src/scripts/check-email.ts",
+    "seed:superadmin": "tsx src/scripts/create-super-admin.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arhiell/SAPS_Turno_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Arhiell/SAPS_Turno_API/issues"
+  },
+  "homepage": "https://github.com/Arhiell/SAPS_Turno_API#readme",
+  "dependencies": {
+    "@google/genai": "2.31.0",
+    "@supabase/supabase-js": "^2.116.0",
+    "argon2": "^0.45.1",
+    "cors": "^2.8.6",
+    "docx": "^9.7.1",
+    "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "fast-xml-parser": "^5.11.2",
+    "google-auth-library": "^11.1.0",
+    "helmet": "^8.3.0",
+    "jose": "^6.2.12",
+    "morgan": "^1.12.1",
+    "nodemailer": "^10.0.10",
+    "pdfkit": "^0.20.2",
+    "socket.io": "^4.8.4",
+    "zod": "^4.6.4"
+  },
+  "devDependencies": {
+    "@types/argon2": "^0.14.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^26.5.1",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pdfkit": "^0.17.6",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

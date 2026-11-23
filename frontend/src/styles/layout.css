@@ -1,0 +1,617 @@
+/* ======================================== */
+/* NAVEGACIÓN Y ESTRUCTURA GENERAL */
+/* ======================================== */
+
+/* Navegación compartida: conserva los colores y medidas de SAPS. */
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* Evita que el navbar tape el formulario al desplazarse hacia él. */
+.configuration-form {
+  scroll-margin-top: calc(var(--saps-navbar-height) + 20px);
+}
+
+/* Tarjetas de configuración. */
+.configuration-link {
+  border: 1px solid var(--saps-borde);
+  border-top: 3px solid var(--saps-verde);
+}
+
+.configuration-link:hover {
+  border-color: var(--saps-verde);
+  background: var(--saps-verde-claro);
+}
+
+/* Sidebar principal. */
+.sidebar {
+  height: 100dvh;
+}
+
+.sidebar-nav {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* Contenido principal de la aplicación. */
+.app-main {
+  max-width: 1680px;
+  margin-inline: auto;
+  overflow-wrap: break-word;
+}
+
+/* Evita desbordamientos en filas, flexbox y formularios. */
+.app-main :where(
+  .row > *,
+  .d-flex > *,
+  fieldset
+) {
+  min-width: 0;
+}
+
+.app-main :where(
+  input,
+  select,
+  textarea
+) {
+  max-width: 100%;
+}
+
+/* Nombre del usuario en el navbar. */
+.navbar-user strong {
+  max-width: 240px;
+  overflow-wrap: break-word;
+}
+
+
+/* ======================================== */
+/* TURNOS */
+/* ======================================== */
+
+.turno-preview {
+  padding: 20px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio);
+  background: var(--saps-superficie);
+}
+
+.turno-preview time {
+  color: var(--saps-verde-oscuro);
+  font-weight: 700;
+}
+
+
+/* ======================================== */
+/* ACCESIBILIDAD Y FOCO */
+/* ======================================== */
+
+:where(a, button):focus-visible {
+  outline: 3px solid var(--saps-verde);
+  outline-offset: 3px;
+}
+
+.sidebar-item:focus-visible {
+  outline-color: var(--saps-amarillo);
+  outline-offset: -3px;
+}
+
+
+/* ======================================== */
+/* BOTONES BOOTSTRAP */
+/* ======================================== */
+
+.btn-primary {
+  --bs-btn-bg: var(--saps-azul);
+  --bs-btn-border-color: var(--saps-azul);
+  --bs-btn-hover-bg: var(--saps-azul-oscuro);
+  --bs-btn-hover-border-color: var(--saps-azul-oscuro);
+}
+
+.btn-success {
+  --bs-btn-bg: var(--saps-verde);
+  --bs-btn-border-color: var(--saps-verde);
+  --bs-btn-hover-bg: var(--saps-verde-hover);
+  --bs-btn-hover-border-color: var(--saps-verde-hover);
+}
+
+
+/* ======================================== */
+/* TABLET */
+/* ======================================== */
+
+/*
+ * Sidebar reducido en tablet,
+ * con etiquetas disponibles al enfocar cada enlace.
+ */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  :root {
+    --saps-sidebar-width: 88px;
+  }
+
+  .sidebar-brand {
+    padding: 16px 8px;
+    min-height: 72px;
+    text-align: center;
+  }
+
+  .sidebar-brand h2 {
+    font-size: 15px;
+  }
+
+  .sidebar-brand p {
+    display: none;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+    padding: 12px;
+  }
+
+  /* Oculta visualmente la etiqueta, pero mantiene accesibilidad. */
+  .sidebar-item span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* Muestra la etiqueta cuando el enlace recibe foco. */
+  .sidebar-item:focus-visible span {
+    position: fixed;
+    left: 90px;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    padding: 10px;
+    margin: 0;
+    background: var(--saps-verde-oscuro);
+    color: var(--saps-blanco);
+    border-radius: var(--saps-radio-pequeno);
+  }
+}
+
+
+/* ======================================== */
+/* MÓVIL */
+/* ======================================== */
+
+@media (max-width: 767.98px) {
+  /*
+   * Mantiene espacio para la barra inferior
+   * y el área segura del dispositivo.
+   */
+  .sidebar {
+    display: none;
+  }
+
+  .app-content {
+    margin-left: 0;
+  }
+
+  .app-main {
+    padding:
+      20px
+      12px
+      calc(160px + env(safe-area-inset-bottom, 0px));
+  }
+
+
+  /* ====================================== */
+  /* NAVBAR MÓVIL */
+  /* ====================================== */
+
+  /*
+   * Recupera en móvil el degradado y contraste
+   * del sidebar de escritorio.
+   */
+  .navbar-saps {
+    min-height: 64px;
+    padding: 10px 14px;
+    gap: 12px;
+    background: linear-gradient(
+      120deg,
+      var(--saps-verde),
+      var(--saps-verde-oscuro)
+    );
+    border-bottom: 3px solid var(--saps-amarillo);
+    box-shadow: var(--saps-sombra);
+  }
+
+  .navbar-saps h1 {
+    font-size: 22px;
+    color: var(--saps-blanco);
+  }
+
+  .navbar-saps .btn-outline-success {
+    color: var(--saps-blanco);
+    border-color: var(--saps-verde-claro);
+    background: transparent;
+    transition:
+      background-color .18s ease,
+      color .18s ease;
+  }
+
+  .navbar-saps .btn-outline-success:hover,
+  .navbar-saps .btn-outline-success:active {
+    color: var(--saps-verde-oscuro);
+    background: var(--saps-verde-claro);
+  }
+
+  .navbar-saps .btn:focus-visible {
+    outline-color: var(--saps-amarillo);
+  }
+
+  /* Oculta información secundaria del usuario en móvil. */
+  .navbar-user .text-end {
+    display: none;
+  }
+
+
+  /* ====================================== */
+  /* CONTENIDO RESPONSIVE */
+  /* ====================================== */
+
+  .app-main .d-flex {
+    flex-wrap: wrap;
+  }
+
+  .app-main .btn,
+  .navbar-saps .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .app-main .btn-group {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 25px;
+  }
+
+  .dashboard-stat-card,
+  .turno-preview {
+    padding: 18px;
+  }
+
+
+  /* ====================================== */
+  /* NAVEGACIÓN INFERIOR MÓVIL */
+  /* ====================================== */
+
+  .mobile-bottom-nav {
+    position: fixed;
+    z-index: 1020;
+    inset: auto 0 0;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+
+    gap: 4px;
+
+    padding:
+      8px
+      max(8px, env(safe-area-inset-right, 0px))
+      calc(8px + env(safe-area-inset-bottom, 0px))
+      max(8px, env(safe-area-inset-left, 0px));
+
+    border-top: 3px solid var(--saps-amarillo);
+
+    background: linear-gradient(
+      120deg,
+      var(--saps-verde),
+      var(--saps-verde-oscuro)
+    );
+
+    box-shadow: var(--saps-sombra-hover);
+  }
+
+  /* Enlaces principales de la barra inferior. */
+  .mobile-bottom-nav__link {
+    min-width: 0;
+    min-height: 58px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+    padding: 4px;
+
+    border: 0;
+    border-radius: var(--saps-radio-pequeno);
+    background: transparent;
+
+    color: var(--saps-blanco);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.25;
+
+    transition:
+      background-color .2s ease,
+      color .2s ease,
+      box-shadow .2s ease,
+      transform .2s ease;
+  }
+
+  .mobile-bottom-nav__link span {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .mobile-bottom-nav__link i {
+    font-size: 21px;
+    transition: transform .2s ease;
+  }
+
+  /* Opción actualmente seleccionada. */
+  .mobile-bottom-nav__link.is-active {
+    color: var(--saps-verde-oscuro);
+    background: var(--saps-blanco);
+
+    box-shadow:
+      inset 0 -3px var(--saps-amarillo),
+      var(--saps-sombra);
+
+    font-weight: 700;
+  }
+
+  .mobile-bottom-nav__link.is-active i {
+    transform: translateY(-2px);
+  }
+
+  /* Botón "Más" cuando está desplegado. */
+  .mobile-bottom-nav__link[aria-expanded="true"] {
+    color: var(--saps-verde-oscuro);
+    background: var(--saps-amarillo-claro);
+  }
+
+  .mobile-bottom-nav__link:active {
+    transform: scale(.96);
+  }
+
+  .mobile-bottom-nav__link:focus-visible {
+    outline: 2px solid var(--saps-amarillo);
+    outline-offset: -2px;
+  }
+
+
+  /* ====================================== */
+  /* MENÚ "MÁS" */
+  /* ====================================== */
+
+  .mobile-bottom-nav__more {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 8px;
+    left: 8px;
+
+    max-height: 60dvh;
+    overflow-y: auto;
+
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+    padding: 12px;
+
+    background: var(--saps-superficie);
+    border: 1px solid var(--saps-verde);
+    border-top: 4px solid var(--saps-amarillo);
+    border-radius: var(--saps-radio);
+
+    box-shadow: var(--saps-sombra-hover);
+
+    transform-origin: bottom center;
+    animation: saps-mobile-menu-in .2s ease-out;
+  }
+
+  .mobile-bottom-nav__more
+    .mobile-bottom-nav__link {
+    min-height: 80px;
+    gap: 8px;
+    padding: 12px 8px;
+
+    color: var(--saps-verde-oscuro);
+    background: var(--saps-verde-claro);
+  }
+
+  .mobile-bottom-nav__more
+    .mobile-bottom-nav__link i {
+    display: grid;
+    place-items: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: var(--saps-radio-pequeno);
+    background: var(--saps-verde);
+    color: var(--saps-blanco);
+  }
+
+  .mobile-bottom-nav__more
+    .mobile-bottom-nav__link.is-active {
+    color: var(--saps-blanco);
+    background: var(--saps-verde);
+  }
+
+  .mobile-bottom-nav__more
+    .mobile-bottom-nav__link.is-active i {
+    color: var(--saps-verde-oscuro);
+    background: var(--saps-amarillo);
+  }
+
+
+  /* ====================================== */
+  /* TABLAS RESPONSIVE */
+  /* ====================================== */
+
+  /*
+   * Convierte las mismas filas en tarjetas
+   * sin duplicar acciones ni datos.
+   */
+  .saps-responsive-table,
+  .saps-responsive-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  /* Oculta visualmente los encabezados. */
+  .saps-responsive-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* Cada fila se muestra como una tarjeta. */
+  .saps-responsive-table tbody tr {
+    display: block;
+    margin: 12px;
+    padding: 8px;
+
+    border: 1px solid var(--saps-borde);
+    border-left: 4px solid var(--saps-verde);
+    border-radius: var(--saps-radio);
+
+    background: var(--saps-superficie);
+    box-shadow: var(--saps-sombra);
+  }
+
+  .app-main
+    .saps-responsive-table
+    tbody
+    td {
+    display: block;
+
+    min-width: 0;
+    width: 100%;
+
+    padding: 8px;
+
+    text-align: left !important;
+
+    border: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* Utiliza data-label para mostrar el nombre de cada campo. */
+  .saps-responsive-table td::before {
+    content: attr(data-label);
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--saps-texto-secundario);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .saps-responsive-table td .d-flex {
+    justify-content: flex-start !important;
+  }
+
+
+  /* ====================================== */
+  /* MODALES */
+  /* ====================================== */
+
+  .modal-dialog {
+    margin: 10px;
+  }
+
+  .modal-content {
+    max-height: calc(100dvh - 20px);
+  }
+
+  .modal-body {
+    overflow-y: auto;
+  }
+}
+
+
+/* ======================================== */
+/* ANIMACIONES */
+/* ======================================== */
+
+/* Entrada del menú adicional de navegación móvil. */
+@keyframes saps-mobile-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ======================================== */
+/* HOVER EN DISPOSITIVOS MÓVILES COMPATIBLES */
+/* ======================================== */
+
+@media (max-width: 767.98px) and (hover: hover) {
+  .mobile-bottom-nav__link:hover {
+    background: var(--saps-verde-claro);
+    color: var(--saps-verde-oscuro);
+    transform: translateY(-2px);
+  }
+
+  .mobile-bottom-nav__more
+    .mobile-bottom-nav__link:hover {
+    background: var(--saps-verde);
+    color: var(--saps-blanco);
+  }
+}
+
+
+/* ======================================== */
+/* REDUCCIÓN DE MOVIMIENTO */
+/* ======================================== */
+
+/* Respeta la preferencia de accesibilidad del usuario. */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-item,
+  .dashboard-action,
+  .dashboard-stat-card,
+  .btn-saps {
+    transition: none;
+    transform: none;
+  }
+
+  .mobile-bottom-nav__more {
+    animation: none;
+  }
+
+  .mobile-bottom-nav__link,
+  .mobile-bottom-nav__link i,
+  .navbar-saps .btn {
+    transition: none;
+  }
+
+  .mobile-bottom-nav__link:hover,
+  .mobile-bottom-nav__link:active,
+  .mobile-bottom-nav__link.is-active i {
+    transform: none;
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "date": "2026-09-19T22:33:07.999Z",
+  "requests": [
+    {
+      "label": "Login SUPER_ADMIN",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Login PACIENTE",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Sin JWT",
+      "method": "POST",
+      "path": "/api/tutors",
+      "expected": 401,
+      "status": 401
+    },
+    {
+      "label": "PACIENTE no lista tutores",
+      "method": "GET",
+      "path": "/api/tutors",
+      "expected": 403,
+      "status": 403
+    },
+    {
+      "label": "Telefono requerido",
+      "method": "POST",
+      "path": "/api/tutors",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "Crear tutor",
+      "method": "POST",
+      "path": "/api/tutors",
+      "expected": 201,
+      "status": 201
+    },
+    {
+      "label": "Tutor duplicado",
+      "method": "POST",
+      "path": "/api/tutors",
+      "expected": 409,
+      "status": 409
+    },
+    {
+      "label": "Listado paginado",
+      "method": "GET",
+      "path": "/api/tutors?limit=1&page=1",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Lectura plana",
+      "method": "GET",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Lectura plana",
+      "method": "GET",
+      "path": "/api/tutors/dni/30111222",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "UUID invalido",
+      "method": "GET",
+      "path": "/api/tutors/no-uuid",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "UUID inexistente",
+      "method": "GET",
+      "path": "/api/tutors/625b831a-36a8-4be2-ba6c-c0997e2975b5",
+      "expected": 404,
+      "status": 404
+    },
+    {
+      "label": "Paginacion invalida",
+      "method": "GET",
+      "path": "/api/tutors?page=0",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "PATCH tutor",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "PATCH vacio",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "Telefono nulo",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "DNI ocupado",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 409,
+      "status": 409
+    },
+    {
+      "label": "Desactivar tutor",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5/status",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Repetir estado",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5/status",
+      "expected": 409,
+      "status": 409
+    },
+    {
+      "label": "Lectura inactivo",
+      "method": "GET",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Listado excluye inactivo",
+      "method": "GET",
+      "path": "/api/tutors",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Reactivar tutor",
+      "method": "PATCH",
+      "path": "/api/tutors/22295299-b49b-426b-9814-659feb177cc5/status",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Reutilizar persona paciente",
+      "method": "POST",
+      "path": "/api/tutors",
+      "expected": 201,
+      "status": 201
+    },
+    {
+      "label": "Desactivar tutor que es paciente",
+      "method": "PATCH",
+      "path": "/api/tutors/f56bdf54-7a35-4c0d-94f6-857c90dac6d3/status",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Reactivar tutor compartido",
+      "method": "PATCH",
+      "path": "/api/tutors/f56bdf54-7a35-4c0d-94f6-857c90dac6d3/status",
+      "expected": 200,
+      "status": 200
+    }
+  ],
+  "records": [
+    {
+      "table": "personas",
+      "id": "189e9d2a-9da8-48fa-9b8d-02964ef596cf",
+      "created": true,
+      "dni": "30111222"
+    },
+    {
+      "table": "tutores",
+      "id": "22295299-b49b-426b-9814-659feb177cc5",
+      "created": true
+    },
+    {
+      "table": "tutores",
+      "id": "f56bdf54-7a35-4c0d-94f6-857c90dac6d3",
+      "id_persona": "6de2bc0a-bd67-4516-b6a8-3b78566f72bf",
+      "created": true
+    }
+  ],
+  "checks": [
+    "DNI y perfil unicos; respuesta plana; cambios personales en personas",
+    "Tutor inactivo excluido del listado; persona y paciente permanecen activos",
+    "Persona de paciente reutilizada sin sobrescribir identidad",
+    "Cuentas reutilizadas desactivadas, sin password, sesiones revocadas"
+  ]
+}

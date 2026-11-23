@@ -1,0 +1,217 @@
+{
+  "date": "2026-09-19T22:32:09.951Z",
+  "requests": [
+    {
+      "label": "Health",
+      "method": "GET",
+      "path": "/api/health",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Health DB",
+      "method": "GET",
+      "path": "/api/health/database",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Health usuarios",
+      "method": "GET",
+      "path": "/api/users/health",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Login SUPER_ADMIN",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Login PACIENTE",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "POST sin JWT",
+      "method": "POST",
+      "path": "/api/patients",
+      "expected": 401,
+      "status": 401
+    },
+    {
+      "label": "POST invalido",
+      "method": "POST",
+      "path": "/api/patients",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "POST paciente",
+      "method": "POST",
+      "path": "/api/patients",
+      "expected": 409,
+      "status": 409
+    },
+    {
+      "label": "DNI duplicado",
+      "method": "POST",
+      "path": "/api/patients",
+      "expected": 409,
+      "status": 409
+    },
+    {
+      "label": "Listado",
+      "method": "GET",
+      "path": "/api/patients",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Lectura plana",
+      "method": "GET",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Lectura plana",
+      "method": "GET",
+      "path": "/api/patients/dni/40999888",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "PATCH mixto",
+      "method": "PATCH",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Desactivar",
+      "method": "PATCH",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37/status",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Listado sin inactivo",
+      "method": "GET",
+      "path": "/api/patients",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Leer inactivo",
+      "method": "GET",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "Reactivar",
+      "method": "PATCH",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37/status",
+      "expected": 200,
+      "status": 200
+    },
+    {
+      "label": "UUID invalido",
+      "method": "GET",
+      "path": "/api/patients/no-uuid",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "UUID inexistente",
+      "method": "GET",
+      "path": "/api/patients/8277b0d4-31da-432c-9dc4-95f4754bb7ab",
+      "expected": 404,
+      "status": 404
+    },
+    {
+      "label": "PATCH vacio",
+      "method": "PATCH",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "Sin cobertura",
+      "method": "PATCH",
+      "path": "/api/patients/1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "expected": 400,
+      "status": 400
+    },
+    {
+      "label": "PACIENTE no puede listar",
+      "method": "GET",
+      "path": "/api/patients",
+      "expected": 403,
+      "status": 403
+    }
+  ],
+  "records": [
+    {
+      "table": "zonas",
+      "id": "908e3d23-0670-4716-bbee-fd14d78657e9",
+      "created": false
+    },
+    {
+      "table": "barrios",
+      "id": "7c6c129e-aba1-4438-8fec-ecdb4e722133",
+      "created": false
+    },
+    {
+      "table": "salitas",
+      "id": "1572fdd1-44d7-47bf-8481-47e2c8865e23",
+      "created": false
+    },
+    {
+      "table": "salita_barrios",
+      "id_salita": "1572fdd1-44d7-47bf-8481-47e2c8865e23",
+      "id_barrio": "7c6c129e-aba1-4438-8fec-ecdb4e722133",
+      "created": false
+    },
+    {
+      "table": "barrios",
+      "id": "e54900d1-f309-4202-ae99-f4c045582f81",
+      "created": false
+    },
+    {
+      "table": "usuarios",
+      "id": "47d0ad94-a364-4ddf-9642-3553337733eb",
+      "role": "SUPER_ADMIN",
+      "created": false
+    },
+    {
+      "table": "usuarios",
+      "id": "2a70568a-8dc4-47aa-9109-9bd56f39673e",
+      "role": "PACIENTE",
+      "created": false
+    },
+    {
+      "table": "personas",
+      "id": "c6bbab6d-db28-49f2-af3a-e1c9be7294a1",
+      "created": false
+    },
+    {
+      "table": "pacientes",
+      "id": "1eac804d-e735-492a-b1ea-2b16bb1bbf37",
+      "created": false
+    }
+  ],
+  "checks": [
+    "Esquema remoto: FK pacientes-personas y sin columnas personales antiguas",
+    "DNI 40999888: exactamente una persona y un paciente",
+    "PATCH: telefono en personas y obra_social en pacientes",
+    "Estado afecta solo pacientes; inactivo consultable por ID y excluido de listado",
+    "Cobertura rechazada sin cambios en persona ni paciente",
+    "Cuentas de prueba desactivadas, sin password y sesiones revocadas"
+  ]
+}

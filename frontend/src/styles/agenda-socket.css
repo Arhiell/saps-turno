@@ -1,0 +1,237 @@
+/* Estilos para el sistema de alertas en tiempo real de Agenda (Socket.IO) */
+
+.agenda-toasts-container {
+  position: fixed;
+  top: 76px;
+  right: 24px;
+  z-index: 1080;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: min(460px, calc(100vw - 32px));
+  width: 100%;
+  pointer-events: none;
+}
+
+.agenda-toast-card {
+  pointer-events: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 5px solid #0d6efd;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.agenda-toast-card.tipo-turno_creado {
+  border-left-color: #198754;
+}
+
+.agenda-toast-card.tipo-turno_reprogramado {
+  border-left-color: #0d6efd;
+}
+
+.agenda-toast-card.tipo-turno_cancelado {
+  border-left-color: #dc3545;
+}
+
+.agenda-toast-card.tipo-bloqueo_agenda {
+  border-left-color: #f59e0b;
+}
+
+.agenda-toast-card.tipo-turno_actualizado {
+  border-left-color: #6366f1;
+}
+
+.agenda-toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.agenda-toast-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.agenda-toast-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.agenda-toast-close:hover {
+  color: #334155;
+}
+
+.agenda-toast-body {
+  padding: 0.9rem 1rem;
+}
+
+.agenda-toast-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.35rem;
+}
+
+.agenda-toast-reprogramacion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.reprogramacion-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.reprogramacion-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.15rem;
+}
+
+.reprogramacion-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.reprogramacion-val.nuevo {
+  color: #0b7a3b;
+  font-weight: 700;
+}
+
+.reprogramacion-val.anterior {
+  color: #b91c1c;
+  text-decoration: line-through;
+}
+
+.agenda-toast-patient {
+  font-size: 0.84rem;
+  color: #475569;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.agenda-toast-meta {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  margin-top: 0.4rem;
+  text-align: right;
+}
+
+/* Indicador de estado Socket en vivo */
+.socket-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.socket-status-badge.conectado {
+  background: #e8f5ed;
+  color: #0b7a3b;
+  border-color: #b7e4c7;
+}
+
+.socket-status-badge.reconectando {
+  background: #fff8d8;
+  color: #b76e00;
+  border-color: #fae17d;
+}
+
+.socket-status-badge.desconectado {
+  background: #f1f5f9;
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.socket-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.socket-status-badge.conectado .socket-pulse-dot {
+  background-color: #198754;
+  box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7);
+  animation: pulseGreen 2s infinite;
+}
+
+.socket-status-badge.reconectando .socket-pulse-dot {
+  background-color: #f59e0b;
+  animation: pulseAmber 1.2s infinite;
+}
+
+.socket-status-badge.desconectado .socket-pulse-dot {
+  background-color: #94a3b8;
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(25, 135, 84, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(25, 135, 84, 0);
+  }
+}
+
+@keyframes pulseAmber {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 480px) {
+  .agenda-toasts-container {
+    right: 10px;
+    left: 10px;
+    width: auto;
+    top: 75px;
+  }
+}

@@ -1,0 +1,51 @@
+.cora-privacy { color: var(--saps-texto); }
+.cora-privacy__banner {
+  position: fixed; z-index: 1045;
+  left: max(24px, env(safe-area-inset-left, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px) + var(--privacy-keyboard-offset, 0px));
+  width: min(500px, calc(100% - 48px)); padding: 18px;
+  max-height: calc(var(--privacy-viewport-height, 100dvh) - 48px - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--saps-blanco); border: 1px solid var(--saps-borde);
+  border-top: 3px solid var(--saps-verde); border-radius: var(--saps-radio);
+  box-shadow: var(--saps-sombra-hover);
+}
+.cora-privacy__heading { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cora-privacy__heading > i { color: var(--saps-verde); font-size: 23px; }
+.cora-privacy__banner .cora-privacy__heading h2 { font-size: 1rem; }
+.cora-privacy__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cora-privacy .btn { min-height: 44px; }
+.cora-privacy :where(button, summary):focus-visible { outline: 3px solid var(--saps-verde); outline-offset: 3px; }
+.cora-privacy__details { font-size: .8125rem; }
+.cora-privacy__details > summary { color: var(--saps-verde-oscuro); cursor: pointer; width: fit-content; padding-block: 5px; }
+.cora-privacy__details-content { margin-top: 8px; }
+.cora-privacy__details-content > p { margin-bottom: 8px; }
+.cora-privacy__banner .cora-privacy__details-content {
+  max-height: min(200px, calc(var(--privacy-viewport-height, 100dvh) * .28));
+  overflow-y: auto; overscroll-behavior: contain; padding: 8px;
+  border: 1px solid var(--saps-borde); border-radius: var(--saps-radio-pequeno);
+}
+.cora-privacy__space { margin-bottom: 48px; }
+@media (min-width: 768px) {
+  /* Ocupa el contenido sin cubrir el sidebar ni el acceso flotante al asistente. */
+  .cora-privacy__banner {
+    left: calc(var(--saps-sidebar-width) + 32px);
+    right: max(240px, env(safe-area-inset-right, 0px));
+    width: auto;
+  }
+}
+@media (max-width: 767.98px) {
+  .cora-privacy__banner {
+    left: max(12px, env(safe-area-inset-left, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
+    bottom: calc(104px + env(safe-area-inset-bottom, 0px) + var(--privacy-keyboard-offset, 0px));
+    width: auto; padding: 14px;
+    max-height: calc(var(--privacy-viewport-height, 100dvh) - 120px - env(safe-area-inset-bottom, 0px));
+  }
+  .cora-privacy__actions { gap: 8px; }
+  .cora-privacy__actions > .btn { flex: 1 1 120px; font-size: .875rem; padding-inline: 10px; }
+  .cora-privacy__space { margin-bottom: 128px; }
+  body:has(.cora-privacy__banner) .cora-chatbot__launcher {
+    bottom: calc(var(--cora-privacy-banner-height, 230px) + 116px + env(safe-area-inset-bottom, 0px));
+  }
+}

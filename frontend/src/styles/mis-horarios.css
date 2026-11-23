@@ -1,0 +1,852 @@
+/* ==========================================================================
+   MIS HORARIOS Y DISPONIBILIDAD - ESTILOS PROFESIONALES CORA / SAPS
+   ========================================================================== */
+
+.horarios-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & ACTIONS
+   -------------------------------------------------------------------------- */
+.horarios-header-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--saps-borde);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.horarios-header-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+
+.horarios-header-subtitle {
+  color: var(--saps-texto-secundario);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.horarios-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.badge-readonly-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #495057;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 30px;
+}
+
+.btn-refresh-agenda {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-refresh-agenda:hover:not(:disabled) {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.notice-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.25rem;
+  background: #f0f7f3;
+  border-left: 4px solid var(--saps-verde);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #1e3a29;
+}
+
+/* --------------------------------------------------------------------------
+   KPI METRICS GRID (INFORMACIÓN GENERAL)
+   -------------------------------------------------------------------------- */
+.kpi-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid var(--saps-borde);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.kpi-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.kpi-icon-green {
+  background-color: var(--saps-verde-claro);
+  color: var(--saps-verde);
+}
+
+.kpi-icon-blue {
+  background-color: var(--saps-azul-claro);
+  color: var(--saps-azul);
+}
+
+.kpi-icon-amber {
+  background-color: #fff4e5;
+  color: #b76e00;
+}
+
+.kpi-icon-purple {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.kpi-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--saps-texto-secundario);
+}
+
+.kpi-value-highlight {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  line-height: 1.3;
+}
+
+.kpi-subtext {
+  font-size: 0.8rem;
+  color: var(--saps-texto-secundario);
+}
+
+.kpi-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.kpi-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.kpi-tag-chip.accent-green {
+  background: var(--saps-verde-claro);
+  color: var(--saps-verde-oscuro);
+  border-color: #c7eed8;
+}
+
+.kpi-tag-chip.accent-blue {
+  background: var(--saps-azul-claro);
+  color: var(--saps-azul-oscuro);
+  border-color: #d0e0fc;
+}
+
+.kpi-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0.2rem 0;
+}
+
+.kpi-schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.45rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.kpi-schedule-day {
+  font-weight: 700;
+  color: #1e293b;
+  margin-right: 0.5rem;
+}
+
+.kpi-schedule-time {
+  font-weight: 600;
+  color: var(--saps-verde-oscuro);
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   CRONOGRAMA SEMANAL
+   -------------------------------------------------------------------------- */
+.cronograma-section {
+  background: #ffffff;
+  border: 1px solid var(--saps-borde);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-header-row h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.week-grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(130px, 1fr));
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+}
+
+.day-column-card {
+  border: 1px solid var(--saps-borde);
+  border-radius: 12px;
+  padding: 0.85rem 0.75rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  min-height: 180px;
+}
+
+.day-column-card.is-active {
+  border-color: #b7e4c7;
+  background: #fafdfb;
+  border-top: 4px solid var(--saps-verde);
+  box-shadow: 0 3px 8px rgba(11, 122, 59, 0.06);
+}
+
+.day-column-card.is-inactive {
+  background: #f8fafc;
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.day-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.day-card-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+
+.day-status-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.day-status-pill.active {
+  background-color: var(--saps-verde-claro);
+  color: var(--saps-verde-oscuro);
+}
+
+.day-status-pill.inactive {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.day-shifts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.shift-badge-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 0.7rem 0.65rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.shift-hours-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  letter-spacing: -0.01em;
+}
+
+.shift-meta-label {
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.35;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.shift-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.76rem;
+  color: #0369a1;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  padding: 0.2rem 0.45rem;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 0.15rem;
+}
+
+.day-empty-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: auto 0;
+  text-align: center;
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   DISPONIBILIDAD DIARIA
+   -------------------------------------------------------------------------- */
+.disponibilidad-section {
+  background: #ffffff;
+  border: 1px solid var(--saps-borde);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.date-navigation-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.date-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-day-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-day-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.btn-today-pill {
+  padding: 0.38rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: var(--saps-verde-oscuro);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-today-pill:hover {
+  background: var(--saps-verde-claro);
+  border-color: var(--saps-verde);
+}
+
+.date-picker-styled {
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 0 0.75rem;
+  font-size: 0.88rem;
+  color: #1e293b;
+  background: #ffffff;
+}
+
+.active-date-display {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.active-date-day {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+}
+
+.active-date-human {
+  font-size: 0.82rem;
+  color: var(--saps-texto-secundario);
+}
+
+/* Metric pills bar */
+.metrics-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metrics-pills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.stat-pill.total {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+.stat-pill.disponibles {
+  background: #e8f5ed;
+  color: #0b7a3b;
+  border-color: #b7e4c7;
+}
+
+.stat-pill.ocupados {
+  background: #eaf0fc;
+  color: #123f9c;
+  border-color: #c7d8fa;
+}
+
+.stat-pill.bloqueados {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.legend-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-indicator.green { background: #198754; }
+.legend-indicator.blue { background: #0d6efd; }
+.legend-indicator.red { background: #dc3545; }
+.legend-indicator.gray { background: #94a3b8; }
+
+/* Empty & alert states */
+.day-off-card {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+}
+
+.day-off-icon {
+  font-size: 2.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.85rem;
+}
+
+.day-off-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.day-off-card p {
+  color: #64748b;
+  font-size: 0.9rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.day-blocked-alert {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-left: 5px solid #e53e3e;
+  border-radius: 10px;
+  color: #742a2a;
+}
+
+.day-blocked-alert h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem 0;
+}
+
+.day-blocked-alert p {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+/* Franjas y Slots Grid */
+.franja-block {
+  margin-bottom: 1.75rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.franja-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.franja-block-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--saps-texto);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.franja-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.franja-clinic-pill {
+  padding: 0.25rem 0.65rem;
+  background: #eaf0fc;
+  color: #123f9c;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.franja-specialty-pill {
+  padding: 0.25rem 0.65rem;
+  background: #e8f5ed;
+  color: #0b7a3b;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.slots-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 0.75rem;
+}
+
+.slot-card-interactive {
+  border-radius: 10px;
+  padding: 0.75rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  position: relative;
+  min-height: 78px;
+}
+
+.slot-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Estado DISPONIBLE (Verde) */
+.slot-card-interactive.state-disponible {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.slot-card-interactive.state-disponible:hover {
+  border-color: #86efac;
+}
+
+/* Estado OCUPADO (Azul) */
+.slot-card-interactive.state-ocupado {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.slot-card-interactive.state-ocupado:hover {
+  border-color: #93c5fd;
+}
+
+/* Estado BLOQUEADO (Rojo) */
+.slot-card-interactive.state-bloqueado {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+/* Estado FINALIZADO / NO DISPONIBLE (Gris neutro) */
+.slot-card-interactive.state-finalizado,
+.slot-card-interactive.state-no_disponible {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #64748b;
+  opacity: 0.9;
+}
+
+.slot-card-interactive.state-finalizado:hover,
+.slot-card-interactive.state-no_disponible:hover {
+  border-color: #cbd5e1;
+}
+
+.stat-pill.finalizados {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+.slot-time-text {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+}
+
+.slot-badge-status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.slot-patient-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.slot-reason-label {
+  font-size: 0.72rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (1920, 1366, 768, 390)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .week-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .week-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .horarios-page-wrapper {
+    gap: 1.25rem;
+  }
+  .horarios-header-section {
+    padding: 1.25rem;
+  }
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .week-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  }
+  .date-navigation-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .active-date-display {
+    text-align: left;
+  }
+  .metrics-pills-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .slots-grid-modern {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .week-grid-container {
+    grid-template-columns: 1fr;
+  }
+  .slots-grid-modern {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .date-controls-group {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,96 @@
+:root {
+  /* =========================================
+     IDENTIDAD SAPS
+     ========================================= */
+
+  --saps-verde: #0b7a3b;
+  --saps-verde-oscuro: #075c2c;
+  --saps-verde-hover: #096b34;
+  --saps-verde-claro: #e8f5ed;
+
+  --saps-azul: #123f9c;
+  --saps-azul-oscuro: #0d2f78;
+  --saps-azul-claro: #eaf0fc;
+
+  --saps-amarillo: #f4d03f;
+  --saps-amarillo-claro: #fff8d8;
+
+  /* =========================================
+     COLORES BASE
+     ========================================= */
+
+  --saps-blanco: #ffffff;
+  --saps-fondo: #f4f7f6;
+  --saps-superficie: #ffffff;
+
+  --saps-texto: #17212b;
+  --saps-texto-secundario: #667085;
+
+  --saps-borde: #e2e8e5;
+
+  /* =========================================
+     ESTADOS
+     ========================================= */
+
+  --saps-exito: #198754;
+  --saps-peligro: #dc3545;
+  --saps-advertencia: #ffc107;
+  --saps-info: #0d6efd;
+
+  /* =========================================
+     LAYOUT
+     ========================================= */
+
+  --saps-sidebar-width: 260px;
+  --saps-navbar-height: 72px;
+
+  /* =========================================
+     BORDES Y SOMBRAS
+     ========================================= */
+
+  --saps-radio: 12px;
+  --saps-radio-pequeno: 8px;
+
+  --saps-sombra:
+    0 2px 12px rgba(16, 24, 40, 0.06);
+
+  --saps-sombra-hover:
+    0 6px 20px rgba(16, 24, 40, 0.10);
+
+  /* =========================================
+     DASHBOARD SEMANTIC TOKENS
+     ========================================= */
+  --dashboard-card-bg: #ffffff;
+  --dashboard-card-border: #e2e8f0;
+  --dashboard-card-radius: 12px;
+  --dashboard-card-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --dashboard-card-shadow-hover: 0 6px 16px rgba(15, 23, 42, 0.08);
+
+  /* Totales e Información (Azul suave) */
+  --dashboard-blue-accent: #0284c7;
+  --dashboard-blue-bg: #f0f9ff;
+  --dashboard-blue-text: #0369a1;
+
+  /* En Espera y Pendientes (Ámbar cálido) */
+  --dashboard-amber-accent: #d97706;
+  --dashboard-amber-bg: #fffbeb;
+  --dashboard-amber-text: #b45309;
+
+  /* Atendidos y Completados (Verde CORA) */
+  --dashboard-green-accent: #16a34a;
+  --dashboard-green-bg: #f0fdf4;
+  --dashboard-green-text: #15803d;
+
+  /* Inasistencias y Cancelaciones (Coral moderado) */
+  --dashboard-coral-accent: #e11d48;
+  --dashboard-coral-bg: #fff1f2;
+  --dashboard-coral-text: #be123c;
+
+  /* Neutro / Estado previo (Pizarra) */
+  --dashboard-slate-accent: #64748b;
+  --dashboard-slate-bg: #f8fafc;
+  --dashboard-slate-text: #475569;
+
+  /* Color uniforme de números */
+  --dashboard-number-color: #1e293b;
+}

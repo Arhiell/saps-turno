@@ -1,0 +1,910 @@
+
+/* BIENVENIDA DEL PACIENTE */
+
+/* Mantiene el panel dentro de la pantalla,
+   incluso a 320 px. */
+.patient-welcome h1 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  line-height: 1.3;
+  overflow-wrap: break-word;
+  margin-bottom: 6px;
+}
+
+/* Nombre completo mostrado debajo del saludo. */
+.patient-welcome .patient-welcome-name {
+  color: var(--saps-verde-oscuro);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Nombre de usuario del paciente. */
+.patient-username {
+  overflow-wrap: break-word;
+  font-weight: 600;
+  color: var(--saps-azul);
+}
+
+
+/* NOTIFICACIONES */
+
+/* Contenedor de la campana de notificaciones. */
+.notification-bell {
+  position: relative;
+}
+
+/* Contador de notificaciones pendientes. */
+.notification-count {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  padding: 2px 5px;
+  border-radius: 12px;
+  background: var(--saps-amarillo);
+  color: var(--saps-texto);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Panel desplegable de notificaciones. */
+.notification-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+
+  width: min(400px, calc(100vw - 24px));
+  max-height: min(70dvh, 650px);
+
+  overflow-y: auto;
+  overflow-wrap: break-word;
+
+  padding: 16px;
+
+  border: 1px solid var(--saps-borde);
+  border-top: 3px solid var(--saps-verde);
+  border-radius: var(--saps-radio);
+
+  background: var(--saps-superficie);
+  color: var(--saps-texto);
+
+  box-shadow: var(--saps-sombra-hover);
+
+  z-index: 1050;
+}
+
+/* Notificación individual. */
+.notification-item {
+  display: grid;
+  gap: 8px;
+
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+
+  background: var(--saps-superficie);
+  color: var(--saps-texto);
+
+  overflow-wrap: break-word;
+}
+
+.notification-message-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1060;
+  background: rgb(0 0 0 / 55%);
+}
+
+.notification-message-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1065;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.notification-message-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 600px);
+  max-height: min(85dvh, 720px);
+  overflow: hidden;
+  border-radius: var(--saps-radio);
+  background: var(--saps-superficie);
+  color: var(--saps-texto);
+  box-shadow: var(--saps-sombra-hover);
+}
+
+.notification-message-header,
+.notification-message-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.notification-message-header {
+  border-bottom: 1px solid var(--saps-borde);
+}
+
+.notification-message-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  overflow-wrap: break-word;
+}
+
+.notification-message-full {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  border-left: 4px solid var(--saps-verde);
+}
+
+.notification-message-footer {
+  align-items: center;
+  border-top: 1px solid var(--saps-borde);
+}
+
+.notification-message-footer small {
+  color: var(--saps-texto-secundario);
+  overflow-wrap: break-word;
+}
+
+/* Notificación todavía no leída. */
+.notification-item.is-unread {
+  background: var(--saps-verde-claro);
+  border-left: 4px solid var(--saps-verde);
+}
+
+/* Información secundaria de la notificación. */
+.notification-item small {
+  color: var(--saps-texto-secundario);
+}
+
+
+/* SECCIONES DEL PACIENTE */
+
+/* Tarjeta general utilizada en las
+   distintas secciones del paciente. */
+.patient-section {
+  padding: 24px;
+
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio);
+
+  background: var(--saps-superficie);
+
+  box-shadow: var(--saps-sombra);
+}
+
+/* Títulos de las secciones. */
+.patient-section h2 {
+  color: var(--saps-verde-oscuro);
+}
+
+.patient-selector-card,
+.patient-filter-panel,
+.patient-section,
+.person-card,
+.booking-form-shell,
+.booking-slots-panel {
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio);
+  background: var(--saps-superficie);
+  box-shadow: var(--saps-sombra);
+}
+
+.patient-selector-card {
+  padding: 18px;
+}
+
+.patient-selector-head,
+.patient-coverage-header,
+.booking-slots-header,
+.person-card-header,
+.patient-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.patient-selector-kicker {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: var(--saps-verde-oscuro);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.patient-selector-badge,
+.coverage-status-pill,
+.person-card-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(11, 122, 59, 0.1);
+  color: var(--saps-verde-oscuro);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.patient-selector-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: #f8faf9;
+}
+
+.patient-selector-summary i {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--saps-verde-claro);
+  color: var(--saps-verde-oscuro);
+  font-size: 1.2rem;
+}
+
+.patient-selector-summary strong,
+.patient-selector-summary small {
+  display: block;
+}
+
+.patient-selector-summary small {
+  color: var(--saps-texto-secundario);
+}
+
+.patient-results-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.patient-results-summary > div {
+  padding: 14px 16px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: var(--saps-superficie);
+  box-shadow: var(--saps-sombra);
+}
+
+.patient-results-summary span {
+  display: block;
+  color: var(--saps-texto-secundario);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.patient-results-summary strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
+  color: var(--saps-verde-oscuro);
+}
+
+.patient-filter-panel {
+  padding: 16px;
+}
+
+.patient-coverage-header {
+  margin-bottom: 14px;
+}
+
+.coverage-status-pill.is-valid {
+  background: rgba(11, 122, 59, 0.12);
+  color: var(--saps-verde-oscuro);
+}
+
+.coverage-status-pill.is-warning {
+  background: rgba(203, 138, 24, 0.12);
+  color: #9a6500;
+}
+
+.patient-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.patient-coverage-mini {
+  padding: 12px 14px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: #f8faf9;
+}
+
+.patient-coverage-mini span {
+  display: block;
+  color: var(--saps-texto-secundario);
+  font-size: 0.72rem;
+  margin-bottom: 6px;
+}
+
+.patient-coverage-mini strong {
+  color: var(--saps-texto);
+  word-break: break-word;
+}
+
+.patient-coverage-list {
+  display: grid;
+  gap: 12px;
+}
+
+.patient-coverage-list > div {
+  padding: 12px 14px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: #fafcfb;
+}
+
+.patient-coverage-list dt {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  color: var(--saps-texto-secundario);
+}
+
+.patient-coverage-list dd {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.booking-form-shell {
+  padding: 18px;
+}
+
+.booking-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.booking-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: #f8faf9;
+  color: var(--saps-texto-secundario);
+}
+
+.booking-step.is-active {
+  border-color: rgba(11, 122, 59, 0.3);
+  background: rgba(11, 122, 59, 0.06);
+  color: var(--saps-verde-oscuro);
+}
+
+.booking-step span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--saps-verde);
+  color: var(--saps-blanco);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.booking-step small {
+  line-height: 1.2;
+}
+
+.booking-form-fields {
+  margin-top: 6px;
+}
+
+.booking-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.booking-empty-state {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--saps-amarillo);
+  background: #fffaf0;
+  color: var(--saps-texto);
+  border-radius: 0 var(--saps-radio-pequeno) var(--saps-radio-pequeno) 0;
+}
+
+.booking-slots-panel {
+  margin-top: 18px;
+  padding: 18px;
+}
+
+.booking-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 10px;
+}
+
+.booking-slot-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border: 1px solid var(--saps-verde);
+  border-radius: 12px;
+  background: var(--saps-blanco);
+  color: var(--saps-verde-oscuro);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.booking-slot-option.is-selected {
+  border-color: var(--saps-verde);
+  background: var(--saps-verde);
+  color: var(--saps-blanco);
+}
+
+.booking-slot-selected,
+.booking-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(11, 122, 59, 0.08);
+  color: var(--saps-verde-oscuro);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.booking-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.patient-detail-header {
+  margin-bottom: 14px;
+}
+
+.patient-detail-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(34, 92, 200, 0.08);
+  color: var(--saps-azul);
+}
+
+.patient-detail-status span {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.turno-preview {
+  padding: 18px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio);
+  background: var(--saps-superficie);
+  box-shadow: var(--saps-sombra);
+}
+
+.turno-preview-header,
+.turno-preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.turno-preview time {
+  color: var(--saps-verde-oscuro);
+  font-weight: 700;
+}
+
+.turno-preview-meta {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--saps-borde);
+  color: var(--saps-texto-secundario);
+  font-size: 0.82rem;
+}
+
+.turno-preview-meta-small {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding-top: 12px;
+}
+
+.person-card {
+  padding: 20px;
+}
+
+.person-card-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.person-card-info div {
+  padding: 10px 12px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio-pequeno);
+  background: #f8faf9;
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.person-card-info span,
+.person-card-info strong {
+  display: block;
+}
+
+.person-card-info span {
+  color: var(--saps-texto-secundario);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.person-card-info strong {
+  font-size: 0.92rem;
+  color: var(--saps-texto);
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.patient-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.patient-quick-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 110px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--saps-borde);
+  border-radius: var(--saps-radio);
+  background: var(--saps-superficie);
+  box-shadow: var(--saps-sombra);
+  text-decoration: none;
+  color: var(--saps-texto);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.patient-quick-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--saps-sombra-hover);
+  border-color: rgba(11, 122, 59, 0.25);
+  text-decoration: none;
+}
+
+.patient-quick-card strong,
+.patient-quick-card span {
+  display: block;
+}
+
+.patient-quick-card strong {
+  color: var(--saps-verde-oscuro);
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.patient-quick-card span {
+  color: var(--saps-texto-secundario);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.patient-quick-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  background: var(--saps-verde-claro);
+  color: var(--saps-verde-oscuro);
+  font-size: 1.3rem;
+}
+
+.patient-quick-card-primary .patient-quick-icon {
+  background: rgba(11, 122, 59, 0.12);
+}
+
+.patient-quick-card-secondary .patient-quick-icon {
+  background: rgba(34, 92, 200, 0.1);
+  color: var(--saps-azul);
+}
+
+.patient-quick-card-neutral .patient-quick-icon {
+  background: rgba(148, 163, 184, 0.12);
+  color: #475569;
+}
+
+/* Valores mostrados en listas de descripción. */
+.patient-section dd {
+  overflow-wrap: break-word;
+  word-break: normal;
+  margin-bottom: 16px;
+}
+
+/* Etiquetas de los datos del paciente. */
+.patient-section dt {
+  color: var(--saps-texto-secundario);
+  font-size: 0.875rem;
+}
+
+
+/* COBERTURA DEL PACIENTE */
+
+/* Escritorio: muestra toda la información. */
+.patient-coverage-summary {
+  display: none;
+}
+
+.patient-coverage-content {
+  display: block;
+  width: 100%;
+}
+
+.patient-coverage-chevron {
+  transition: transform 0.2s ease;
+}
+
+
+/* HISTORIAL DEL PACIENTE */
+
+/* Línea visual utilizada para representar
+   el historial de cambios del turno. */
+.patient-history {
+  padding-left: 20px;
+
+  border-left: 3px solid var(--saps-verde-claro);
+
+  list-style: none;
+}
+
+/* Separación entre eventos del historial. */
+.patient-history li {
+  margin-bottom: 20px;
+}
+
+
+/* ACCESIBILIDAD */
+
+/* Resalta botones utilizados como etiquetas
+   cuando algún elemento interno recibe foco. */
+.patient-section label.btn:focus-within {
+  outline: 3px solid var(--saps-azul);
+  outline-offset: 3px;
+}
+
+
+/* RESPONSIVE - MÓVILES */
+
+@media (max-width: 767.98px) {
+
+  /* Panel de notificaciones. */
+  .notification-message-modal {
+    padding: 0.75rem;
+  }
+
+  .notification-message-dialog {
+    max-height: 90dvh;
+  }
+
+  .notification-message-header,
+  .notification-message-footer {
+    padding: 0.875rem;
+  }
+
+  .notification-message-full {
+    padding: 1rem 0.875rem;
+  }
+
+  .notification-panel {
+    position: fixed;
+
+    top: 76px;
+    right: 12px;
+    left: 12px;
+
+    width: auto;
+    max-height: calc(100dvh - 180px);
+  }
+
+  /* Reduce el espacio del navbar cuando
+     contiene la campana de notificaciones. */
+  .navbar-saps:has(.notification-bell) {
+    gap: 8px;
+  }
+
+  /* Reduce el título para evitar desbordamientos. */
+  .navbar-saps:has(.notification-bell) h1 {
+    font-size: 19px;
+  }
+
+  /* Reduce el espacio entre los elementos
+     del usuario dentro del navbar. */
+  .navbar-saps:has(.notification-bell) .navbar-user {
+    gap: 8px;
+  }
+
+  /* Reduce el espacio interno de las tarjetas
+     en dispositivos pequeños. */
+  .patient-section {
+    padding: 16px;
+  }
+
+  .patient-results-summary,
+  .booking-stepper,
+  .booking-form-grid,
+  .patient-coverage-grid,
+  .person-card-info {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-selector-head,
+  .patient-coverage-header,
+  .booking-slots-header,
+  .person-card-header,
+  .patient-detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .patient-quick-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-quick-card {
+    min-height: 92px;
+    padding: 14px 16px;
+  }
+
+  .patient-quick-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  /* RESUMEN DE COBERTURA EN MÓVILES */
+
+  .patient-coverage-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    text-align: left;
+    cursor: pointer;
+    color: var(--saps-texto);
+  }
+
+  .patient-coverage-summary:focus-visible {
+    outline: 3px solid var(--saps-azul);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .patient-coverage-summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    background: var(--saps-verde-claro);
+    color: var(--saps-verde-oscuro);
+
+    font-size: 19px;
+  }
+
+  .patient-coverage-summary-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+  }
+
+  .patient-coverage-summary-text strong {
+    color: var(--saps-verde-oscuro);
+    font-size: 1rem;
+  }
+
+  .patient-coverage-summary-text > span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    overflow-wrap: break-word;
+  }
+
+  .patient-coverage-summary-text small {
+    color: var(--saps-texto-secundario);
+    font-size: 0.8rem;
+  }
+
+  .patient-coverage-chevron {
+    flex: 0 0 auto;
+    color: var(--saps-verde-oscuro);
+  }
+
+  /* Oculta el contenido completo inicialmente. */
+  .patient-coverage-content {
+    display: none;
+  }
+
+  /* Muestra el contenido al desplegar. */
+  .patient-coverage-content.is-expanded {
+    display: block;
+    margin-top: 16px;
+  }
+
+  /* El resumen ya contiene el título. */
+  .patient-coverage-content-title {
+    display: none;
+  }
+}
+
+
+/* RESPETAR PREFERENCIAS DE MOVIMIENTO */
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-coverage-chevron {
+    transition: none;
+  }
+}
+
+
+/* Optimización de rendimiento para tarjetas del inicio */
+.patient-dashboard .hover-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  contain: layout;
+}
+.patient-dashboard .hover-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}

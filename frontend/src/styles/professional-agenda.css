@@ -1,0 +1,836 @@
+﻿/* --------------------------------------------------------------------------
+   CALENDARIO PROFESIONAL REFINADO
+   -------------------------------------------------------------------------- */
+
+.professional-calendar {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0;
+  background: transparent;
+  border: none;
+}
+
+.professional-calendar__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.professional-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.professional-calendar__grid > strong {
+  font-size: 11px;
+  font-weight: 700;
+  padding-block: 6px;
+  color: var(--saps-texto-secundario, #64748b);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.professional-calendar__day {
+  display: grid;
+  place-items: center;
+  height: 34px;
+  width: 34px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: var(--saps-texto, #1e293b);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.professional-calendar__day:hover:not(:disabled) {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.professional-calendar__day.has-activity {
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 700;
+}
+
+.professional-calendar__day[aria-pressed="true"],
+.professional-calendar__day.is-selected {
+  background: var(--saps-verde, #198754) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-color: #15803d !important;
+  box-shadow: 0 2px 4px rgba(25, 135, 84, 0.35);
+}
+
+.professional-calendar__day[aria-current="date"]:not(.is-selected):not([aria-pressed="true"]) {
+  border-color: var(--saps-verde, #198754);
+}
+
+.professional-calendar__day:focus-visible {
+  outline: 3px solid var(--saps-azul, #0d6efd);
+}
+
+.professional-calendar__day:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.professional-turno--ATENDIDO {
+  --bs-table-bg: #f0fdf4;
+}
+
+.professional-turno--NO_ASISTIO {
+  --bs-table-bg: #fefce8;
+}
+
+.professional-turno--CANCELADO {
+  --bs-table-bg: #fef2f2;
+}
+
+.professional-turno--REPROGRAMADO {
+  --bs-table-bg: #f0f9ff;
+}
+
+/* --------------------------------------------------------------------------
+   KPI CARDS (PROFESIONAL)
+   -------------------------------------------------------------------------- */
+
+.prof-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.prof-kpi-card {
+  background: var(--saps-superficie, #ffffff);
+  border: 1px solid var(--saps-borde, #e2e8f0);
+  border-radius: var(--saps-radio, 12px);
+  padding: 0.75rem 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.prof-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.prof-kpi-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.prof-kpi-icon.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.prof-kpi-icon.attended {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.prof-kpi-icon.absent {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.prof-kpi-icon.upcoming {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.prof-kpi-icon.total {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.prof-kpi-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.prof-kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--saps-texto-secundario, #64748b);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.prof-kpi-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--saps-texto, #0f172a);
+  line-height: 1.15;
+}
+
+.prof-kpi-sub {
+  font-size: 0.73rem;
+  color: var(--saps-texto-secundario, #94a3b8);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   BARRA DE FILTROS POR ESTADO
+   -------------------------------------------------------------------------- */
+
+.prof-filter-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  background: #f8fafc;
+  border: 1px solid var(--saps-borde, #e2e8f0);
+  border-radius: 10px;
+}
+
+.prof-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.prof-filter-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.prof-filter-btn.active {
+  background: var(--saps-verde, #198754);
+  border-color: var(--saps-verde, #198754);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(25, 135, 84, 0.25);
+}
+
+.prof-filter-btn.active .badge {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   TARJETA HERO DE PRÃ“XIMO PACIENTE (VISTA DIARIA)
+   -------------------------------------------------------------------------- */
+
+.prof-next-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 1.5px solid #86efac;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.prof-next-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--saps-verde, #16a34a);
+}
+
+.prof-next-badge-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 12px;
+  border: 1px solid #bbf7d0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prof-next-badge-pulse .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+  animation: profPulse 1.8s infinite;
+}
+
+@keyframes profPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.prof-table-patient-link {
+  color: var(--saps-texto, #0f172a);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+}
+
+.prof-table-patient-link:hover {
+  color: var(--saps-verde, #16a34a);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   COLUMNA Y BOTONES DE ACCIÃ“N (TABLA DE TURNOS)
+   -------------------------------------------------------------------------- */
+
+.prof-actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+/* BotÃ³n "Ver ficha" */
+.prof-btn-view-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 32px;
+  min-height: 32px;
+  padding: 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 1px solid var(--saps-verde, #198754);
+  background: #ffffff;
+  color: var(--saps-verde, #198754);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.prof-btn-view-card:hover {
+  background: var(--saps-verde, #198754);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(25, 135, 84, 0.2);
+}
+
+.prof-btn-view-card i {
+  font-size: 0.95rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Botones cuadrados de acciÃ³n rÃ¡pida (Atendido / No asistiÃ³) */
+.prof-btn-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.prof-btn-action-icon i {
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* BotÃ³n Marcar Atendido (Verde) */
+.prof-btn-action-icon.btn-attended {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.prof-btn-action-icon.btn-attended:hover:not(:disabled) {
+  background: #198754;
+  border-color: #198754;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(25, 135, 84, 0.25);
+}
+
+/* BotÃ³n Marcar No asistiÃ³ (Rojo) */
+.prof-btn-action-icon.btn-absent {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.prof-btn-action-icon.btn-absent:hover:not(:disabled) {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.25);
+}
+
+.prof-btn-action-icon:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT INTEGRADO: MI AGENDA (2 COLUMNAS EN ESCRITORIO)
+   -------------------------------------------------------------------------- */
+
+.agenda-layout-grid {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.agenda-sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.agenda-control-card {
+  background: var(--saps-superficie, #ffffff);
+  border: 1px solid var(--saps-borde, #e2e8f0);
+  border-radius: var(--saps-radio, 12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.agenda-control-header {
+  padding: 0.85rem 1.15rem;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--saps-borde, #e2e8f0);
+}
+
+.agenda-control-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--saps-texto, #0f172a);
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.agenda-control-body {
+  padding: 1rem 1.15rem;
+}
+
+.agenda-sidebar-panel .professional-calendar {
+  max-width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  margin: 0 0 0.5rem 0;
+}
+
+.agenda-main-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.agenda-period-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.agenda-empty-state {
+  background: #ffffff;
+  border: 1.5px dashed var(--saps-borde, #e2e8f0);
+  border-radius: 12px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.agenda-empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   ESTILOS INICIO (DASHBOARD PROFESIONAL)
+   -------------------------------------------------------------------------- */
+
+.prof-dash-header h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+}
+
+.prof-dash-card {
+  background: var(--saps-superficie, #ffffff);
+  border: 1px solid var(--saps-borde, #e2e8f0);
+  border-radius: var(--saps-radio, 14px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.prof-next-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid #bbf7d0;
+}
+
+.prof-dash-time {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.prof-quick-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.prof-quick-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateX(3px);
+  color: inherit;
+}
+
+.prof-quick-btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* AdaptaciÃ³n responsive */
+@media (max-width: 1024px) {
+  .agenda-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .prof-dash-time {
+    font-size: 2rem;
+  }
+  .prof-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .prof-kpi-card {
+    padding: 0.85rem;
+    gap: 0.6rem;
+  }
+  .prof-kpi-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
+  }
+  .prof-kpi-val {
+    font-size: 1.3rem;
+  }
+}
+
+/* Refinamiento compacto de tabla y tarjetas mÃ³viles en Mi agenda */
+.prof-actions-cell {
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.prof-btn-view-card {
+  height: 30px;
+  min-height: 30px;
+  padding: 0 0.58rem;
+  font-size: 0.78rem;
+  gap: 0.3rem;
+}
+
+.prof-btn-action-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  height: 30px;
+  min-height: 30px;
+  padding: 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1e293b;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.prof-btn-action-secondary:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.professional-agenda-table th,
+.professional-agenda-table td {
+  padding: 0.6rem 0.55rem;
+  vertical-align: middle;
+}
+
+.prof-salita-truncate {
+  max-width: 165px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prof-actions-menu-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.prof-actions-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 30;
+  min-width: 185px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+  padding: 0.35rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.prof-actions-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.prof-actions-dropdown-item:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.prof-actions-dropdown-item.is-danger {
+  color: #b91c1c;
+}
+
+.prof-actions-dropdown-item.is-success {
+  color: #15803d;
+}
+
+.prof-mobile-agenda-cards {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.prof-mobile-agenda-card {
+  background: #ffffff;
+  border: 1px solid var(--saps-borde, #e2e8f0);
+  border-radius: 12px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (max-width: 1360px) and (min-width: 1025px) {
+  .agenda-layout-grid {
+    grid-template-columns: 288px minmax(0, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Ajuste responsive estricto para laptops (1280px) y evitar quiebre de palabras en Paciente */
+.prof-kpi-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.prof-kpi-card {
+  min-width: 0;
+  padding: 0.85rem 0.9rem;
+}
+
+.prof-kpi-label,
+.prof-kpi-sub {
+  white-space: normal;
+  line-height: 1.2;
+}
+
+.professional-agenda-table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.professional-agenda-table th,
+.professional-agenda-table td {
+  padding: 0.55rem 0.45rem;
+}
+
+.prof-agenda-col-tight {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.prof-agenda-patient-cell {
+  min-width: 155px;
+}
+
+.prof-table-patient-link {
+  max-width: 100%;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.prof-salita-truncate {
+  max-width: clamp(110px, 13vw, 175px);
+}
+
+@media (max-width: 1380px) and (min-width: 1025px) {
+  .agenda-layout-grid {
+    grid-template-columns: 262px minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .prof-btn-view-card {
+    padding: 0 0.48rem;
+    font-size: 0.76rem;
+  }
+  .prof-btn-action-secondary {
+    padding: 0 0.44rem;
+    font-size: 0.76rem;
+  }
+}
+
+.app-main table.professional-agenda-table th,
+.app-main table.professional-agenda-table td {
+  padding: 0.58rem 0.45rem;
+}
+
+.app-main table.professional-agenda-table .prof-actions-cell {
+  gap: 0.28rem;
+}
+
+.app-main table.professional-agenda-table .prof-btn-view-card {
+  padding: 0 0.5rem;
+  font-size: 0.77rem;
+  gap: 0.25rem;
+}
+
+.app-main table.professional-agenda-table .prof-btn-action-secondary {
+  padding: 0 0.44rem;
+  font-size: 0.77rem;
+  gap: 0.24rem;
+}
+
+@media (max-width: 1380px) and (min-width: 1025px) {
+  .app-main table.professional-agenda-table th,
+  .app-main table.professional-agenda-table td {
+    padding: 0.5rem 0.35rem;
+  }
+  .prof-agenda-patient-cell {
+    min-width: 125px;
+  }
+  .prof-salita-truncate {
+    max-width: 115px;
+  }
+  .app-main table.professional-agenda-table .prof-btn-view-card span {
+    display: none;
+  }
+  .app-main table.professional-agenda-table .prof-btn-view-card::after {
+    content: 'Ficha';
+  }
+}

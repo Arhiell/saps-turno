@@ -1,0 +1,74 @@
+/* Contenedor principal de las páginas de notificaciones. */
+.notificaciones-page {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Mantiene el estilo general de las tarjetas del sistema. */
+.notificaciones-page .card {
+  border-radius: var(--saps-radio);
+}
+
+/* Navegación de la sección de notificaciones. */
+.notificaciones-page .nav-pills .nav-link {
+  color: var(--saps-verde);
+}
+
+.notificaciones-page .nav-pills .nav-link.active {
+  background: var(--saps-verde);
+  color: white;
+}
+
+/* Evita desbordamientos dentro de los formularios. */
+.notificaciones-page fieldset {
+  min-width: 0;
+}
+
+/* Conserva los saltos de línea del contenido de la notificación. */
+.notification-message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Tabla utilizada para el historial de envíos. */
+.notification-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.notification-table th:first-child {
+  width: 24%;
+}
+
+.notification-table th:nth-child(3) {
+  width: 23%;
+}
+
+.notification-table td,
+.notification-table th {
+  padding: 1rem 0.65rem;
+  overflow-wrap: anywhere;
+}
+
+/* Ajustes para dispositivos móviles. */
+@media (max-width: 575px) {
+  .notification-submit {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .notificaciones-page input[type='date'],
+  .notificaciones-page input[type='time'] {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .notificaciones-page .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .notificaciones-page .modal-footer > button {
+    min-width: 0 !important;
+    flex: 1 1 100%;
+  }
+}
